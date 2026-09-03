@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 3 : L'Évolution des OST</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="header-content">
+            <div class="header-titles">
+                <h1><i class="fa-solid fa-timeline"></i> L'Évolution des OST</h1>
+                <p>Innovations de rupture, sciences, technologies et impacts sur la société</p>
+            </div>
+            <div class="header-badge">
+                <span id="module-badge">Module 03mr durand03</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="app-main">
+
+        <section id="section-cours" class="app-section active">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-book-open"></i> Apports Théoriques & Frise Chronologique</h2>
+                <p>Découvrez les notions clés avant de tester vos connaissances.</p>
+            </div>
+
+            <div id="cours-grid" class="cours-grid">
+                </div>
+
+            <div class="action-bar">
+                <button id="btn-start-quiz" class="btn btn-primary">
+                    Lancer le Quiz de Compréhension <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <section id="section-quiz" class="app-section">
+            <div class="quiz-top-bar">
+                <div class="progress-container">
+                    <div id="quiz-progress-bar" class="progress-bar"></div>
+                </div>
+                <div class="timer-box" id="quiz-timer">
+                    <i class="fa-regular fa-clock"></i> <span id="quiz-time-left">20:00</span>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2><i class="fa-solid fa-brain"></i> Quiz de Compréhension</h2>
+                <p>Répondez aux 15 questions pour valider vos acquis théoriques.</p>
+            </div>
+
+            <div id="quiz-container" class="quiz-container">
+                </div>
+
+            <div class="action-bar">
+                <button id="btn-submit-quiz" class="btn btn-success">
+                    Valider le Quiz <i class="fa-solid fa-check"></i>
+                </button>
+            </div>
+        </section>
+
+        <section id="section-atelier" class="app-section">
+            <div class="quiz-top-bar">
+                <div class="progress-container">
+                    <div id="atelier-progress-bar" class="progress-bar"></div>
+                </div>
+                <div class="timer-box warning" id="atelier-timer">
+                    <i class="fa-solid fa-stopwatch"></i> <span id="atelier-time-left">01:30</span>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2><i class="fa-solid fa-screwdriver-wrench"></i> Atelier Pratique (Exercices)</h2>
+                <p>15 exercices interactifs (Notés sur 40 points).</p>
+            </div>
+
+            <div id="atelier-container" class="atelier-container">
+                </div>
+
+            <div class="action-bar">
+                <button id="btn-prev-exo" class="btn btn-secondary" style="display:none;">
+                    <i class="fa-solid fa-arrow-left"></i> Précédent
+                </button>
+                <button id="btn-next-exo" class="btn btn-primary">
+                    Exercice Suivant <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                <button id="btn-submit-atelier" class="btn btn-success" style="display:none;">
+                    Terminer l'Atelier <i class="fa-solid fa-flag-checkered"></i>
+                </button>
+            </div>
+        </section>
+
+        <section id="section-bilan" class="app-section">
+            <div id="pdf-content">
+                <div class="section-header">
+                    <h2><i class="fa-solid fa-award"></i> Bilan & Restitution</h2>
+                    <p>Synthèse de vos résultats pour le module L'Évolution des OST.</p>
+                </div>
+
+                <div class="score-card">
+                    <div class="score-main">
+                        <span id="final-score">0 / 55</span>
+                        <span id="final-mention" class="badge-mention">Mention</span>
+                    </div>
+                    <div class="score-details-grid">
+                        <div class="detail-box">
+                            <h4>Quiz de Compréhension</h4>
+                            <p id="score-quiz-detail">0 / 15</p>
+                        </div>
+                        <div class="detail-box">
+                            <h4>Atelier Pratique</h4>
+                            <p id="score-atelier-detail">0 / 40</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-breakdown">
+                    <h3>Détail des réponses</h3>
+                    <div id="recap-container">
+                        </div>
+                </div>
+            </div>
+
+            <div class="action-bar no-print">
+                <button id="btn-download-pdf" class="btn btn-primary">
+                    <i class="fa-solid fa-file-pdf"></i> Télécharger le bilan en PDF
+                </button>
+                <button id="btn-restart" class="btn btn-secondary">
+                    <i class="fa-solid fa-rotate-right"></i> Recommencer
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 - Collège Numérique - Technologie 3ème | Module L'Évolution des OST</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

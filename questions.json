@@ -1,0 +1,358 @@
+{
+  "cours": [
+    {
+      "titre": "1. Innovations de rupture et OST",
+      "texte": "Une innovation de rupture (ou invention majeure) transforme radicalement nos modes de vie en créant de nouveaux Objets et Systèmes Techniques (OST). Par exemple, l'invention du transistor a permis de basculer de l'électronique à lampes vers l'informatique moderne."
+    },
+    {
+      "titre": "2. Science et Technologie",
+      "texte": "Une découverte scientifique (ex: la mise en évidence des ondes électromagnétiques) nourrit les développements technologiques (ex: la création de la radio, du téléphone portable, du Wi-Fi). La technique donne corps aux théories de la science."
+    },
+    {
+      "titre": "3. Incidence d'un OST sur la société",
+      "texte": "L'introduction d'un OST modifie profondément l'organisation sociale, les habitudes de travail et de loisirs. Les impacts peuvent être économiques, environnementaux ou culturels (ex: l'essor d'Internet et la mondialisation des échanges)."
+    },
+    {
+      "titre": "4. Contraintes sociétales sur les OST",
+      "texte": "Inversement, la société influence la conception des OST à travers ses attentes, ses lois, ses contraintes écologiques ou éthiques (ex: l'obligation de réduire l'empreinte carbone oriente la conception des véhicules électriques)."
+    }
+  ],
+  "quizComprehension": [
+    {
+      "question": "Qu'est-ce qu'une innovation de rupture ?",
+      "options": [
+        "Une simple modification esthétique d'un objet existant",
+        "Une invention qui transforme radicalement les usages et crée de nouveaux OST",
+        "Une panne matérielle irréparable",
+        "Une baisse du prix d'un produit technologique"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Quel est le lien principal entre science et technologie ?",
+      "options": [
+        "La science n'a aucun lien avec la technique",
+        "La technologie précède toujours la découverte scientifique",
+        "Une découverte scientifique permet des développements technologiques",
+        "La science remplace la fabrication des objets"
+      ],
+      "correct": 2
+    },
+    {
+      "question": "Comment qualifie-t-on l'effet de l'apparition de l'automobile sur la société du XXe siècle ?",
+      "options": [
+        "Un impact négligeable",
+        "Une incidence sociétale majeure (aménagement du territoire, libertés de déplacement)",
+        "Une régression technologique",
+        "Un phénomène purement artistique"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Qu'appelle-t-on une contrainte sociétale sur un OST ?",
+      "options": [
+        "Un décret qui interdit l'utilisation de l'électricité",
+        "Une attente, une règle ou une limite fixée par la société (ex: normes écologiques, sécurité)",
+        "Le coût de fabrication unitaire en usine",
+        "La vitesse maximale d'un processeur"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Quel domaine illustre le mieux l'impact des ondes électromagnétiques découvertes par la science ?",
+      "options": [
+        "La maçonnerie traditionnelle",
+        "Les télécommunications sans fil (radio, smartphone)",
+        "L'agriculture biologique manuelle",
+        "La forge de métaux anciens"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "L'invention du transistor a entraîné...",
+      "options": [
+        "La miniaturisation et l'essor de l'informatique",
+        "L'alourdissement des ordinateurs",
+        "La disparition totale de l'électricité",
+        "Le retour aux machines à vapeur"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Pourquoi la société impose-t-elle des contraintes de recyclage aux fabricants d'OST ?",
+      "options": [
+        "Pour augmenter le poids des appareils",
+        "Pour limiter la pollution et préserver les ressources naturelles",
+        "Pour ralentir volontairement l'économie",
+        "Par simple tradition historique"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Qu'est-ce qu'un Objet et Système Technique (OST) ?",
+      "options": [
+        "Uniquement un dessin technique sur papier",
+        "Un produit conçu par l'humain pour répondre à un besoin",
+        "Un phénomène météorologique naturel",
+        "Une roche trouvée dans la nature"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "L'apparition du smartphone a modifié...",
+      "options": [
+        "Uniquement la façon d'écouter de la musique",
+        "Nos modes de communication, de travail et d'accès à l'information",
+        "Uniquement la consommation d'eau des foyers",
+        "La rotation de la Terre"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Dans l'histoire des techniques, la machine à vapeur a permis...",
+      "options": [
+        "La révolution industrielle et la mécanisation du travail",
+        "L'invention d'Internet",
+        "La découverte de la pénicilline",
+        "L'exploration spatiale immédiate"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Quel facteur sociétal pousse aujourd'hui à concevoir des objets connectés économes en énergie ?",
+      "options": [
+        "L'abondance infinie des énergies fossiles",
+        "La transition énergétique et la lutte contre le réchauffement climatique",
+        "L'interdiction légale d'utiliser des batteries",
+        "La baisse du coût du pétrole"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Qu'est-ce qui caractérise l'évolution technologique ? ",
+      "options": [
+        "Les objets deviennent plus performants, plus petits et souvent plus intelligents",
+        "Les objets reviennent toujours à leur forme initiale sans changement",
+        "Les objets perdent leurs fonctions au fil du temps",
+        "L'abandon total de l'électricité"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Quel effet l'intelligence artificielle (IA) a-t-elle sur la société actuelle ?",
+      "options": [
+        "Aucun effet notable",
+        "Une transformation des métiers, des services et des modes de traitement des données",
+        "Une suppression définitive des écrans",
+        "Un retour au papier carbone"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Qu'est-ce qu'une contrainte éthique liée à un nouvel OST ?",
+      "options": [
+        "Le choix de la couleur du boîtier plastique",
+        "Les questions morales liées à son usage (ex: protection des données personnelles, respect de la vie privée)",
+        "Le nombre de vis nécessaires à l'assemblage",
+        "Le type de prise secteur utilisé"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "Comment la science et la technique interagissent-elles ?",
+      "options": [
+        "Elles s'influencent mutuellement : la science explique le monde, la technique le transforme",
+        "Elles s'opposent et ne se croisent jamais",
+        "La technique détruit systématiquement la science",
+        "Elles fonctionnent de manière totalement isolée"
+      ],
+      "correct": 0
+    }
+  ],
+  "evaluation": [
+    {
+      "id": "exo-1",
+      "niveau": "Facile",
+      "points": 3,
+      "type": "choix-unique",
+      "enonce": "1. Parmi ces propositions, identifiez l'innovation de rupture historique majeure :",
+      "options": [
+        "Le changement de couleur d'un stylo à bille",
+        "L'invention de l'imprimerie par Gutenberg",
+        "L'ajout d'une sonnette sans fil sur un portail",
+        "Le remplacement d'une ampoule grillée"
+      ],
+      "correct": 1
+    },
+    {
+      "id": "exo-2",
+      "niveau": "Facile",
+      "points": 2,
+      "type": "valeur-numerique",
+      "enonce": "2. Si une découverte scientifique majeure date de 1895 (ondes hertziennes) et que la première liaison radio transatlantique est réalisée en 1901, quel est le nombre d'années écoulées entre la découverte et son développement technologique appliqué ? (Écrivez uniquement le chiffre)",
+      "correct": "6"
+    },
+    {
+      "id": "exo-3",
+      "niveau": "Moyen",
+      "points": 3,
+      "type": "tableau-menu",
+      "enonce": "3. Associez chaque découverte scientifique à son développement technologique issu :",
+      "colonnes": ["Découverte scientifique", "Développement technologique associé"],
+      "lignes": [
+        ["Propriétés des semi-conducteurs", "select-1"],
+        ["Structure de l'ADN", "select-2"]
+      ],
+      "optionsSelect": {
+        "select-1": ["Sélectionner...", "Processeur / Micro-ordinateur", "Moteur à vapeur", "Lampe à incandescence"],
+        "select-2": ["Sélectionner...", "Séquençage génétique / Médecine personnalisée", "Télégramme optique", "Roue dentée"]
+      },
+      "correct": {
+        "select-1": "Processeur / Micro-ordinateur",
+        "select-2": "Séquençage génétique / Médecine personnalisée"
+      }
+    },
+    {
+      "id": "exo-4",
+      "niveau": "Facile",
+      "points": 2,
+      "type": "choix-multiple",
+      "enonce": "4. Quels sont les impacts sociétaux directs de l'essor des réseaux sociaux ? (Sélectionnez les deux bonnes réponses)",
+      "options": [
+        "Modification des modes d'information et de communication",
+        "Suppression définitive du besoin d'électricité dans le monde",
+        "Apparition de nouveaux enjeux liés à la protection des données personnelles",
+        "Arrêt complet de la production industrielle d'objets"
+      ],
+      "correct": [0, 2]
+    },
+    {
+      "id": "exo-5",
+      "niveau": "Moyen",
+      "points": 3,
+      "type": "texte-trous-liste-unique",
+      "enonce": "5. Complétez le texte sur les contraintes sociétales : <br> 'La prise de conscience environnementale pousse les concepteurs d'OST à intégrer l'______ dès la phase de conception, afin de faciliter le recyclage futur.'",
+      "options": ["Éco-conception", "Obsolescence", "Complexité", "Lourdeur"],
+      "correct": "Éco-conception"
+    },
+    {
+      "id": "exo-6",
+      "niveau": "Avancé",
+      "points": 3,
+      "type": "reponse-saisie",
+      "enonce": "6. Quel terme désigne la fin programmée ou prématurée de la durée de vie d'un objet technique décidée par le fabricant ? (Un seul mot)",
+      "correct": "obsolescence"
+    },
+    {
+      "id": "exo-7",
+      "niveau": "Moyen",
+      "points": 3,
+      "type": "association",
+      "enonce": "7. Associez chaque OST à son incidence principale sur la société :",
+      "paires": [
+        {"terme": "Le train à vapeur", "definition": "Accélération des échanges et révolution des transports au XIXe siècle"},
+        {"terme": "Le smartphone", "definition": "Mobilité numérique et connexion permanente à l'information"}
+      ]
+    },
+    {
+      "id": "exo-8",
+      "niveau": "Facile",
+      "points": 2,
+      "type": "choix-unique",
+      "enonce": "8. Qu'est-ce qui caractérise en premier lieu le passage d'une invention scientifique à un objet technique commercialisé ?",
+      "options": [
+        "L'industrialisation et la réponse à un besoin exprimé par la société",
+        "L'interdiction absolue de le vendre",
+        "Le fait qu'il reste uniquement dans un laboratoire secret",
+        "L'absence totale d'utilité pratique"
+      ],
+      "correct": 0
+    },
+    {
+      "id": "exo-9",
+      "niveau": "Moyen",
+      "points": 3,
+      "type": "choix-multiple",
+      "enonce": "9. Parmi ces exemples, lesquels traduisent une contrainte sociétale environnementale sur un OST ? (Deux réponses)",
+      "options": [
+        "L'obligation d'afficher l'indice de réparabilité sur les appareils électroménagers",
+        "La diminution de la taille des touches d'un clavier",
+        "La limitation des émissions de CO2 pour les véhicules thermiques neufs",
+        "Le choix de la police d'écriture d'un manuel scolaire"
+      ],
+      "correct": [0, 2]
+    },
+    {
+      "id": "exo-10",
+      "niveau": "Avancé",
+      "points": 3,
+      "type": "texte-trous-libre",
+      "enonce": "10. Rédigez un argumentaire court : 'L'évolution des OST est dictée à la fois par les découvertes de la ______ et les exigences de la société.'",
+      "correct": "science"
+    },
+    {
+      "id": "exo-11",
+      "niveau": "Moyen",
+      "points": 2,
+      "type": "choix-unique",
+      "enonce": "11. Quel impact l'automatisation des usines a-t-elle eu sur le travail humain ?",
+      "options": [
+        "L'élimination totale de toute forme de travail",
+        "L'évolution des compétences requises et la réduction de la pénibilité sur certaines tâches répétitives",
+        "Le retour au travail entièrement manuel sans machine",
+        "L'augmentation des horaires de travail à la main"
+      ],
+      "correct": 1
+    },
+    {
+      "id": "exo-12",
+      "niveau": "Facile",
+      "points": 2,
+      "type": "choix-unique",
+      "enonce": "12. Le téléphone fixe de l'ère analogique a évolué vers le smartphone numérique. C'est un exemple de :",
+      "options": [
+        "Stagnation technologique permanente",
+        "Évolution d'un Objet et Système Technique (OST) guidée par l'innovation",
+        "Disparition définitive de toute communication",
+        "Invention sans aucun lien avec le passé"
+      ],
+      "correct": 1
+    },
+    {
+      "id": "exo-13",
+      "niveau": "Avancé",
+      "points": 3,
+      "type": "reponse-saisie",
+      "enonce": "13. Comment appelle-t-on l'ensemble des règles morales et de protection régissant l'utilisation des nouvelles technologies (comme l'IA ou les données de santé) ? (Un mot)",
+      "correct": "ethique"
+    },
+    {
+      "id": "exo-14",
+      "niveau": "Moyen",
+      "points": 3,
+      "type": "choix-unique",
+      "enonce": "14. En quoi les contraintes sociétales de sécurité routière ont-elles modifié l'évolution de l'automobile ?",
+      "options": [
+        "En supprimant les freins",
+        "En intégrant des innovations comme l'ABS, les ceintures de sécurité et les airbags",
+        "En interdisant l'utilisation des phares la nuit",
+        "En rendant les voitures plus fragiles"
+      ],
+      "correct": 1
+    },
+    {
+      "id": "exo-15",
+      "niveau": "Facile",
+      "points": 3,
+      "type": "choix-unique",
+      "enonce": "15. Exprimez l'idée principale du module : quel est le moteur principal de l'évolution des OST au fil des siècles ?",
+      "options": [
+        "Le hasard pur sans aucune recherche",
+        "La combinaison entre progrès scientifique, invention technique et besoins/contraintes de la société",
+        "Le refus d'utiliser de nouveaux matériaux",
+        "La volonté de compliquer la vie quotidienne"
+      ],
+      "correct": 1
+    }
+  ]
+}
