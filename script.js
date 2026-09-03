@@ -5,7 +5,7 @@ let currentAtelierExercises = [];
 let currentExoIndex = 0;
 
 let quizTimerInterval = null;
-let quizSecondsLeft = 20 * 60; // 20 minutes
+let quizSecondsLeft = 25 * 60; // 25 minutes pour 30 questions diversifiées
 
 let atelierTimerInterval = null;
 let atelierSecondsLeft = 90; // 90 secondes par exercice
@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
     initNavigation();
 });
 
-// Chargement des données JSON avec contournement du cache
 async function loadData() {
     try {
         const response = await fetch(`questions.json?t=${Date.now()}`);
@@ -30,7 +29,6 @@ async function loadData() {
     }
 }
 
-// Algorithme de Fisher-Yates pour le mélange dynamique
 function shuffle(array) {
     let arr = [...array];
     for (let i = arr.length - 1; i > 0; i--) {
@@ -40,7 +38,6 @@ function shuffle(array) {
     return arr;
 }
 
-// Normalisation des textes pour la correction
 function normalizeText(text) {
     if (!text) return "";
     return text.toString()
@@ -50,7 +47,6 @@ function normalizeText(text) {
         .trim();
 }
 
-// Navigation entre sections
 function initNavigation() {
     document.getElementById("btn-start-quiz").addEventListener("click", () => {
         switchSection("section-quiz");
@@ -108,7 +104,6 @@ function switchSection(sectionId) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// --- SECTION 1 : COURS ---
 function initCours() {
     const grid = document.getElementById("cours-grid");
     grid.innerHTML = "";
@@ -123,7 +118,7 @@ function initCours() {
     });
 }
 
-// --- SECTION 2 : QUIZ ---
+// --- QUIZ : GESTION DES 30 QUESTIONS MULTIPLES ---
 function startQuizTimer() {
     quizTimerInterval = setInterval(() => {
         quizSecondsLeft--;
@@ -131,7 +126,7 @@ function startQuizTimer() {
         let s = quizSecondsLeft % 60;
         document.getElementById("quiz-time-left").textContent = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
         
-        let pct = ((1200 - quizSecondsLeft) / 1200) * 100;
+        let pct = ((1500 - quizSecondsLeft) / 1500) * 100;
         document.getElementById("quiz-progress-bar").style.width = `${pct}%`;
 
         if (quizSecondsLeft <= 0) {
@@ -150,26 +145,52 @@ function initQuiz() {
         const card = document.createElement("div");
         card.className = "question-card";
         
-        let optionsHtml = "";
-        q.options.forEach((opt, oIndex) => {
-            optionsHtml += `
-                <label class="option-label">
-                    <input type="radio" name="q_${qIndex}" value="${oIndex}">
-                    <span>${opt}</span>
-                </label>
-            `;
-        });
+        let bodyHtml = `<h4>Question ${qIndex + 1} / ${currentQuizQuestions.length}</h4>`;
+        bodyHtml += `<p class="question-text">${q.question}</p>`;
 
-        card.innerHTML = `
-            <h4>Question ${qIndex + 1} / ${currentQuizQuestions.length}</h4>
-            <p class="question-text">${q.question}</p>
-            <div class="options-group">${optionsHtml}</div>
-        `;
+        // Rendu dynamique selon le type de question du quiz
+        if (q.type === "choix-unique") {
+            bodyHtml += `<div class="options-group">`;
+            q.options.forEach((opt, oIndex) => {
+                bodyHtml += `<label class="option-label"><input type="radio" name="quiz_${qIndex}" value="${oIndex}"> <span>${opt}</span></label>`;
+            });
+            bodyHtml += `</div>`;
+        } else if (q.type === "choix-multiple") {
+            bodyHtml += `<div class="options-group">`;
+            q.options.forEach((opt, oIndex) => {
+                bodyHtml += `<label class="option-label"><input type="checkbox" name="quiz_multi_${qIndex}" value="${oIndex}"> <span>${opt}</span></label>`;
+            });
+            bodyHtml += `</div>`;
+        } else if (q.type === "valeur-numerique" || q.type === "reponse-saisie") {
+            bodyHtml += `<input type="text" id="quiz_input_${qIndex}" class="input-styled" placeholder="Votre réponse...">`;
+        } else if (q.type === "tableau-menu") {
+            bodyHtml += `<table class="exo-table"><tr><th>${q.colonnes[0]}</th><th>${q.colonnes[1]}</th></tr>`;
+            q.lignes.forEach(row => {
+                let selectKey = row[1];
+                let opts = q.optionsSelect[selectKey];
+                let optionsOptsHtml = opts.map(o => `<option value="${o}">${o}</option>`).join("");
+                bodyHtml += `<tr><td>${row[0]}</td><td><select class="select-styled" data-quiz-key="${selectKey}" data-qindex="${qIndex}">${optionsOptsHtml}</select></td></tr>`;
+            });
+            bodyHtml += `</table>`;
+        } else if (q.type === "texte-trous-liste-unique") {
+            let optsHtml = q.options.map(o => `<option value="${o}">${o}</option>`).join("");
+            bodyHtml += `<div class="mt-3"><select id="quiz_trous_${qIndex}" class="select-styled"><option value="">-- Choisir une option --</option>${optsHtml}</select></div>`;
+        } else if (q.type === "association") {
+            bodyHtml += `<div class="association-grid" data-qindex="${qIndex}">`;
+            q.paires.forEach((pair, pIdx) => {
+                let shuffledDefs = shuffle(q.paires.map(p => p.definition));
+                let defOpts = shuffledDefs.map(d => `<option value="${d}">${d}</option>`).join("");
+                bodyHtml += `<div class="assoc-row"><span><strong>${pair.terme}</strong></span> <select class="select-styled quiz-assoc-select" data-pairindex="${pIdx}" data-qindex="${qIndex}"><option value="">-- Associer --</option>${defOpts}</select></div>`;
+            });
+            bodyHtml += `</div>`;
+        }
+
+        card.innerHTML = bodyHtml;
         container.appendChild(card);
     });
 }
 
-// --- SECTION 3 : ATELIER ---
+// --- ATELIER PRATIQUE ---
 function startAtelierTimer() {
     atelierSecondsLeft = 90;
     updateAtelierTimerDisplay();
@@ -183,7 +204,6 @@ function startAtelierTimer() {
         }
 
         if (atelierSecondsLeft <= 0) {
-            // Passer automatiquement à l'exercice suivant ou soumettre
             if (currentExoIndex < currentAtelierExercises.length - 1) {
                 document.getElementById("btn-next-exo").click();
             } else {
@@ -206,10 +226,7 @@ function initAtelier() {
 }
 
 function renderAtelierExercise() {
-    // Sauvegarder les réponses de l'exercice actuel avant de changer
     saveCurrentExoAnswers();
-    
-    // Réinitialiser le chrono de l'exercice
     atelierSecondsLeft = 90;
     document.getElementById("atelier-timer").classList.remove("warning");
 
@@ -227,7 +244,6 @@ function renderAtelierExercise() {
     let bodyHtml = `<div class="exo-meta"><span class="badge ${badgeClass}">${exo.niveau}</span> <span class="exo-pts">${exo.points} points</span></div>`;
     bodyHtml += `<p class="question-text">${exo.enonce}</p>`;
 
-    // Génération selon le type d'exercice
     if (exo.type === "choix-unique") {
         exo.options.forEach((opt, idx) => {
             bodyHtml += `<label class="option-label"><input type="radio" name="exo_active" value="${idx}"> <span>${opt}</span></label>`;
@@ -262,11 +278,8 @@ function renderAtelierExercise() {
 
     card.innerHTML = bodyHtml;
     container.appendChild(card);
-
-    // Restaurer les réponses si déjà saisies
     restoreCurrentExoAnswers();
 
-    // Gestion boutons Précédent / Suivant / Terminer
     document.getElementById("btn-prev-exo").style.display = currentExoIndex > 0 ? "inline-block" : "none";
     if (currentExoIndex === currentAtelierExercises.length - 1) {
         document.getElementById("btn-next-exo").style.display = "none";
@@ -276,7 +289,6 @@ function renderAtelierExercise() {
         document.getElementById("btn-submit-atelier").style.display = "none";
     }
 
-    // Barre de progression atelier
     let progressPct = ((currentExoIndex + 1) / currentAtelierExercises.length) * 100;
     document.getElementById("atelier-progress-bar").style.width = `${progressPct}%`;
 }
@@ -348,16 +360,46 @@ function restoreCurrentExoAnswers() {
     }
 }
 
-// --- SECTION 4 : BILAN & CALCUL DES SCORES ---
+// --- BILAN & CALCUL DES SCORES (Quiz /30 + Atelier /40 = /70) ---
 function calculateAndDisplayResults() {
-    saveCurrentExoAnswers(); // Sauvegarder le dernier exercice
+    saveCurrentExoAnswers();
 
-    // Calcul score Quiz (/15)
+    // Calcul score Quiz (/30)
     let quizScore = 0;
     currentQuizQuestions.forEach((q, qIndex) => {
-        const checked = document.querySelector(`input[name="q_${qIndex}"]:checked`);
-        if (checked && parseInt(checked.value) === q.correct) {
-            quizScore++;
+        if (q.type === "choix-unique") {
+            const checked = document.querySelector(`input[name="quiz_${qIndex}"]:checked`);
+            if (checked && parseInt(checked.value) === q.correct) quizScore++;
+        } else if (q.type === "choix-multiple") {
+            const checkedBoxes = document.querySelectorAll(`input[name="quiz_multi_${qIndex}"]:checked`);
+            let userAns = Array.from(checkedBoxes).map(cb => parseInt(cb.value));
+            let correctSet = new Set(q.correct);
+            let userSet = new Set(userAns);
+            if (correctSet.size === userSet.size && [...correctSet].every(val => userSet.has(val))) {
+                quizScore++;
+            }
+        } else if (q.type === "valeur-numerique" || q.type === "reponse-saisie") {
+            const input = document.getElementById(`quiz_input_${qIndex}`);
+            if (input && normalizeText(input.value) === normalizeText(q.correct)) quizScore++;
+        } else if (q.type === "tableau-menu") {
+            let selects = document.querySelectorAll(`select[data-qindex="${qIndex}"]`);
+            let allCorrect = true;
+            selects.forEach(sel => {
+                let key = sel.getAttribute("data-quiz-key");
+                if (sel.value !== q.correct[key]) allCorrect = false;
+            });
+            if (allCorrect) quizScore++;
+        } else if (q.type === "texte-trous-liste-unique") {
+            const sel = document.getElementById(`quiz_trous_${qIndex}`);
+            if (sel && sel.value === q.correct) quizScore++;
+        } else if (q.type === "association") {
+            let selects = document.querySelectorAll(`.quiz-assoc-select[data-qindex="${qIndex}"]`);
+            let allCorrect = true;
+            selects.forEach(sel => {
+                let pIdx = sel.getAttribute("data-pairindex");
+                if (sel.value !== q.paires[pIdx].definition) allCorrect = false;
+            });
+            if (allCorrect) quizScore++;
         }
     });
 
@@ -373,13 +415,12 @@ function calculateAndDisplayResults() {
             if (Array.isArray(ans) && Array.isArray(exo.correct)) {
                 let correctSet = new Set(exo.correct);
                 let userSet = new Set(ans);
-                let isEqual = correctSet.size === userSet.size && [...correctSet].every(val => userSet.has(val));
-                if (isEqual) atelierScore += exo.points;
+                if (correctSet.size === userSet.size && [...correctSet].every(val => userSet.has(val))) {
+                    atelierScore += exo.points;
+                }
             }
         } else if (exo.type === "valeur-numerique" || exo.type === "reponse-saisie" || exo.type === "texte-trous-libre") {
-            if (normalizeText(ans) === normalizeText(exo.correct)) {
-                atelierScore += exo.points;
-            }
+            if (normalizeText(ans) === normalizeText(exo.correct)) atelierScore += exo.points;
         } else if (exo.type === "tableau-menu") {
             let allCorrect = true;
             for (let key in exo.correct) {
@@ -397,16 +438,14 @@ function calculateAndDisplayResults() {
         }
     });
 
-    let totalScore = quizScore + atelierScore; // Sur 55
+    let totalScore = quizScore + atelierScore; // Sur 70 points au total
 
-    // Affichage des scores
-    document.getElementById("final-score").textContent = `${totalScore} / 55`;
-    document.getElementById("score-quiz-detail").textContent = `${quizScore} / 15`;
+    document.getElementById("final-score").textContent = `${totalScore} / 70`;
+    document.getElementById("score-quiz-detail").textContent = `${quizScore} / 30`;
     document.getElementById("score-atelier-detail").textContent = `${atelierScore} / 40`;
 
-    // Mention
     let mentionEl = document.getElementById("final-mention");
-    let percentage = (totalScore / 55) * 100;
+    let percentage = (totalScore / 70) * 100;
     let mentionText = "";
     if (percentage >= 85) { mentionText = "Excellent - Maîtrise parfaite"; mentionEl.className = "badge-mention bg-emerald"; }
     else if (percentage >= 70) { mentionText = "Très Bien - Solides acquis"; mentionEl.className = "badge-mention bg-cyan"; }
@@ -415,11 +454,10 @@ function calculateAndDisplayResults() {
     else { mentionText = "Insuffisant - Reprendre le cours"; mentionEl.className = "badge-mention bg-rose"; }
     mentionEl.textContent = mentionText;
 
-    // Récapitulatif détaillé
     const recapContainer = document.getElementById("recap-container");
     recapContainer.innerHTML = `
         <div class="recap-summary-box">
-            <p><i class="fa-solid fa-circle-check"></i> Quiz validé : <strong>${quizScore} / 15</strong></p>
+            <p><i class="fa-solid fa-circle-check"></i> Quiz validé : <strong>${quizScore} / 30</strong></p>
             <p><i class="fa-solid fa-circle-check"></i> Atelier pratique validé : <strong>${atelierScore} / 40</strong></p>
         </div>
     `;
