@@ -110,10 +110,25 @@ function initCours() {
     appData.cours.forEach((item, index) => {
         const card = document.createElement("div");
         card.className = `cours-card card-color-${index % 5}`;
-        card.innerHTML = `
+        
+        let cardHtml = `
             <h3><i class="fa-solid fa-bookmark"></i> ${item.titre}</h3>
             <p>${item.texte}</p>
         `;
+
+        // Si une vidéo MP4 est définie, on utilise la balise video HTML5
+        if (item.video) {
+            cardHtml += `
+                <div class="video-container">
+                    <video controls preload="metadata">
+                        <source src="${item.video}" type="video/mp4">
+                        Votre navigateur ne supporte pas la lecture de vidéos.
+                    </video>
+                </div>
+            `;
+        }
+
+        card.innerHTML = cardHtml;
         grid.appendChild(card);
     });
 }
