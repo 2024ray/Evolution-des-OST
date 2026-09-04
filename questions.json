@@ -1,8 +1,8 @@
-{
-  "cours": [
+{"cours": [
     {
       "titre": "1. Innovations de rupture et OST",
-      "texte": "Une innovation de rupture (ou invention majeure) transforme radicalement nos modes de vie en créant de nouveaux Objets et Systèmes Techniques (OST). Par exemple, l'invention du transistor a permis de basculer de l'électronique à lampes vers l'informatique moderne."
+      "texte": "Une innovation de rupture (ou invention majeure) transforme radicalement nos modes de vie en créant de nouveaux Objets et Systèmes Techniques (OST). Par exemple, l'invention du transistor a permis de basculer de l'électronique à lampes vers l'informatique moderne.",
+      "video": "videos/innovation-rupture.mp4"
     },
     {
       "titre": "2. Science et Technologie",
