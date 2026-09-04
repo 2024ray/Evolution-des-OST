@@ -117,16 +117,16 @@ function initCours() {
         `;
 
         // Si une vidéo MP4 est définie, on utilise la balise video HTML5
-        if (item.video) {
-            cardHtml += `
-                <div class="video-container">
-                    <video controls preload="metadata">
-                        <source src="${item.video}" type="video/mp4">
-                        Votre navigateur ne supporte pas la lecture de vidéos.
-                    </video>
-                </div>
-            `;
-        }
+      if (item.video) {
+    cardHtml += `
+        <div class="video-container">
+            <video controls preload="metadata">
+                <source src="${item.video}" type="video/mp4">
+                Votre navigateur ne supporte pas la lecture de vidéos.
+            </video>
+        </div>
+    `;
+}
 
         card.innerHTML = cardHtml;
         grid.appendChild(card);
