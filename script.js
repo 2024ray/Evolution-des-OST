@@ -5,7 +5,7 @@ let currentAtelierExercises = [];
 let currentExoIndex = 0;
 
 let quizTimerInterval = null;
-let quizSecondsLeft = 25 * 60; // 25 minutes pour 30 questions diversifiées
+let quizSecondsLeft = 25 * 60; // 25 minutes pour les questions diversifiées
 
 let atelierTimerInterval = null;
 let atelierSecondsLeft = 90; // 90 secondes par exercice
@@ -116,24 +116,24 @@ function initCours() {
             <p>${item.texte}</p>
         `;
 
-        // Si une vidéo MP4 est définie, on utilise la balise video HTML5
-      if (item.video) {
-    cardHtml += `
-        <div class="video-container">
-            <video controls preload="metadata">
-                <source src="${item.video}" type="video/mp4">
-                Votre navigateur ne supporte pas la lecture de vidéos.
-            </video>
-        </div>
-    `;
-}
+        // Insertion sécurisée du lecteur vidéo HTML5
+        if (item.video) {
+            cardHtml += `
+                <div class="video-container">
+                    <video controls preload="metadata">
+                        <source src="${item.video}" type="video/mp4">
+                        Votre navigateur ne supporte pas la lecture de vidéos.
+                    </video>
+                </div>
+            `;
+        }
 
         card.innerHTML = cardHtml;
         grid.appendChild(card);
     });
 }
 
-// --- QUIZ : GESTION DES 30 QUESTIONS MULTIPLES ---
+// --- QUIZ ---
 function startQuizTimer() {
     quizTimerInterval = setInterval(() => {
         quizSecondsLeft--;
@@ -163,7 +163,6 @@ function initQuiz() {
         let bodyHtml = `<h4>Question ${qIndex + 1} / ${currentQuizQuestions.length}</h4>`;
         bodyHtml += `<p class="question-text">${q.question}</p>`;
 
-        // Rendu dynamique selon le type de question du quiz
         if (q.type === "choix-unique") {
             bodyHtml += `<div class="options-group">`;
             q.options.forEach((opt, oIndex) => {
@@ -375,11 +374,10 @@ function restoreCurrentExoAnswers() {
     }
 }
 
-// --- BILAN & CALCUL DES SCORES (Quiz /30 + Atelier /40 = /70) ---
+// --- BILAN & CALCUL DES SCORES ---
 function calculateAndDisplayResults() {
     saveCurrentExoAnswers();
 
-    // Calcul score Quiz (/30)
     let quizScore = 0;
     currentQuizQuestions.forEach((q, qIndex) => {
         if (q.type === "choix-unique") {
@@ -418,7 +416,6 @@ function calculateAndDisplayResults() {
         }
     });
 
-    // Calcul score Atelier (/40)
     let atelierScore = 0;
     appData.evaluation.forEach(exo => {
         const ans = userAtelierAnswers[exo.id];
@@ -453,7 +450,7 @@ function calculateAndDisplayResults() {
         }
     });
 
-    let totalScore = quizScore + atelierScore; // Sur 70 points au total
+    let totalScore = quizScore + atelierScore;
 
     document.getElementById("final-score").textContent = `${totalScore} / 70`;
     document.getElementById("score-quiz-detail").textContent = `${quizScore} / 30`;
