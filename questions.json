@@ -5,9 +5,10 @@
       "texte": "Une innovation de rupture (ou invention majeure) transforme radicalement nos modes de vie en créant de nouveaux Objets et Systèmes Techniques (OST). Par exemple, l'invention du transistor a permis de basculer de l'électronique à lampes vers l'informatique moderne.",
       "video": "video/innovation_rupture_3eme.mp4"
     },
-    {
+  {
       "titre": "2. Science et Technologie",
-      "texte": "Une découverte scientifique (ex: la mise en évidence des ondes électromagnétiques) nourrit les développements technologiques (ex: la création de la radio, du téléphone portable, du Wi-Fi). La technique donne corps aux théories de la science."
+      "texte": "Une découverte scientifique (ex: la mise en évidence des ondes électromagnétiques) nourrit les développements technologiques (ex: la création de la radio, du téléphone portable, du Wi-Fi). La technique donne corps aux théories de la science.",
+      "video": "video/Science_et_Technologie_3.mp4"
     },
     {
       "titre": "3. Incidence d'un OST sur la société",
