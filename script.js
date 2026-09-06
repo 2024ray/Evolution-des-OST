@@ -50,19 +50,25 @@ function normalizeText(text) {
 
 // --- MODIFICATION : Fonction de désactivation du copier-coller et des raccourcis ---
 function initAntiCopyPaste() {
-    // Désactive les événements de copie, coupe et collage au niveau du document
+    // Désactive les événements de copie, coupe et collage
     ["copy", "cut", "paste"].forEach(eventType => {
         document.addEventListener(eventType, (e) => {
             e.preventDefault();
         });
     });
 
-    // Désactive les raccourcis clavier spécifiques (Ctrl+C, Ctrl+V, Ctrl+X, Ctrl+A, etc.)
+    // Désactive le clic droit pour empêcher l'accès au menu contextuel de copie
+    document.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+    });
+
+    // Désactive les raccourcis clavier Ctrl+C, Ctrl+V, Ctrl+X (et équivalents Mac Meta)
     document.addEventListener("keydown", (e) => {
-        if ((e.ctrlKey || e.metaKey) && ["c", "v", "x", "a"].includes(e.key.toLowerCase())) {
+        if ((e.ctrlKey || e.metaKey) && ["c", "v", "x"].includes(e.key.toLowerCase())) {
             e.preventDefault();
         }
     });
+}
 }
 
 function initNavigation() {
