@@ -461,4 +461,10 @@ body {
     .assoc-row {
         grid-template-columns: 1fr;
     }
+    body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 }
