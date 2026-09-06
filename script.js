@@ -8,7 +8,7 @@ let quizTimerInterval = null;
 let quizSecondsLeft = 25 * 60; // 25 minutes pour les questions diversifiées
 
 let atelierTimerInterval = null;
-let atelierSecondsLeft = 60; // MODIFICATION : Durée réduite à 60 secondes par question
+let atelierSecondsLeft = 30; // MODIFICATION : Durée réduite à 30 secondes par question
 
 let userQuizAnswers = {};
 let userAtelierAnswers = {};
@@ -83,13 +83,7 @@ function initNavigation() {
         initAtelier();
     });
 
-    // MODIFICATION : Suppression de l'écouteur sur btn-next-exo (bouton supprimé du DOM)
-    document.getElementById("btn-prev-exo").addEventListener("click", () => {
-        if (currentExoIndex > 0) {
-            currentExoIndex--;
-            renderAtelierExercise();
-        }
-    });
+    // MODIFICATION : Bouton "Revenir" (#btn-prev-exo) complètement supprimé de la logique et masqué.
 
     document.getElementById("btn-submit-atelier").addEventListener("click", () => {
         clearInterval(atelierTimerInterval);
@@ -97,11 +91,8 @@ function initNavigation() {
         switchSection("section-bilan");
     });
 
-    document.getElementById("btn-restart").addEventListener("click", () => {
-        location.reload();
-    });
+    // MODIFICATION : Bouton "Recommencer" (#btn-restart) supprimé du parcours de bilan.
 
-    // MODIFICATION : Remplacement de l'action de téléchargement PDF par l'impression native window.print()
     document.getElementById("btn-print-pdf").addEventListener("click", () => {
         window.print();
     });
@@ -214,7 +205,7 @@ function initQuiz() {
 
 // --- ATELIER PRATIQUE ---
 function startAtelierTimer() {
-    atelierSecondsLeft = 60; // MODIFICATION : Initialisation à 60 secondes
+    atelierSecondsLeft = 30; // MODIFICATION : Durée fixée à 30 secondes
     updateAtelierTimerDisplay();
 
     atelierTimerInterval = setInterval(() => {
@@ -228,11 +219,11 @@ function startAtelierTimer() {
         }
 
         if (atelierSecondsLeft <= 0) {
-            saveCurrentExoAnswers(); // Sauvegarder avant de forcer le passage
+            saveCurrentExoAnswers(); 
             if (currentExoIndex < currentAtelierExercises.length - 1) {
                 currentExoIndex++;
                 renderAtelierExercise();
-                startAtelierTimer(); // Relancer le timer pour la question suivante
+                startAtelierTimer(); 
             } else {
                 clearInterval(atelierTimerInterval);
                 document.getElementById("btn-submit-atelier").click();
@@ -254,9 +245,8 @@ function initAtelier() {
 }
 
 function renderAtelierExercise() {
-    // Réinitialiser et relancer le timer de 60s à chaque affichage d'exercice
     clearInterval(atelierTimerInterval);
-    atelierSecondsLeft = 60;
+    atelierSecondsLeft = 30; // MODIFICATION : Réinitialisation à 30 secondes
     startAtelierTimer();
 
     const container = document.getElementById("atelier-container");
@@ -309,14 +299,12 @@ function renderAtelierExercise() {
     container.appendChild(card);
     restoreCurrentExoAnswers();
 
-    document.getElementById("btn-prev-exo").style.display = currentExoIndex > 0 ? "inline-block" : "none";
     if (currentExoIndex === currentAtelierExercises.length - 1) {
         document.getElementById("btn-submit-atelier").style.display = "inline-block";
     } else {
         document.getElementById("btn-submit-atelier").style.display = "none";
     }
 
-    // MODIFICATION : Mise à jour dynamique de la barre de progression de l'atelier
     let progressPct = ((currentExoIndex + 1) / currentAtelierExercises.length) * 100;
     document.getElementById("atelier-progress-bar").style.width = `${progressPct}%`;
 }
