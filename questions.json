@@ -1,11 +1,11 @@
 {
-    "cours": [
+  "cours": [
     {
       "titre": "1. Innovations de rupture et OST",
       "texte": "Une innovation de rupture (ou invention majeure) transforme radicalement nos modes de vie en créant de nouveaux Objets et Systèmes Techniques (OST). Par exemple, l'invention du transistor a permis de basculer de l'électronique à lampes vers l'informatique moderne.",
       "video": "video/innovation_rupture_3eme.mp4"
     },
-  {
+    {
       "titre": "2. Science et Technologie",
       "texte": "Une découverte scientifique (ex: la mise en évidence des ondes électromagnétiques) nourrit les développements technologiques (ex: la création de la radio, du téléphone portable, du Wi-Fi). La technique donne corps aux théories de la science.",
       "video": "video/Science_et_Technologie_3.mp4"
@@ -19,6 +19,11 @@
       "texte": "Inversement, la société influence la conception des OST à travers ses attentes, ses lois, ses contraintes écologiques ou éthiques (ex: l'obligation de réduire l'empreinte carbone oriente la conception des véhicules électriques)."
     }
   ],
+  "parametresInterface": {
+    "boutonAction": "Imprimer le document en PDF",
+    "tempsParQuestionSecondes": 60,
+    "modeNavigationAtelier": "automatique-bloque"
+  },
   "quizComprehension": [
     {
       "id": "q1",
@@ -525,6 +530,64 @@
         "La volonté de compliquer la vie quotidienne"
       ],
       "correct": 1
+    },
+    {
+      "id": "exo-16",
+      "niveau": "Facile",
+      "points": 2,
+      "type": "choix-unique",
+      "enonce": "16. Qu'est-ce qu'une invention technique par rapport à la science ?",
+      "options": [
+        "Une application concrète qui met en œuvre des principes scientifiques pour répondre à un besoin",
+        "Une théorie pure sans application matérielle",
+        "Un phénomène naturel inaltérable",
+        "Une erreur de calcul en laboratoire"
+      ],
+      "correct": 0
+    },
+    {
+      "id": "exo-17",
+      "niveau": "Moyen",
+      "points": 3,
+      "type": "choix-multiple",
+      "enonce": "17. Quels sont les impacts culturels majeurs de l'arrivée du web et du numérique ? (Deux réponses)",
+      "options": [
+        "L'accès instantané à une quantité mondiale d'informations",
+        "L'interdiction absolue de lire des livres papiers",
+        "Le développement de nouvelles formes d'expressions artistiques (arts numériques)",
+        "La suppression de toutes les langues parlées"
+      ],
+      "correct": [0, 2]
+    },
+    {
+      "id": "exo-18",
+      "niveau": "Facile",
+      "points": 2,
+      "type": "valeur-numerique",
+      "enonce": "18. Si un objet technique est conçu en 1950 et qu'une mise à jour majeure intervient 25 ans plus tard, quelle est l'année de cette mise à jour ? (Écrivez uniquement le chiffre)",
+      "correct": "1975"
+    },
+    {
+      "id": "exo-19",
+      "niveau": "Moyen",
+      "points": 3,
+      "type": "reponse-saisie",
+      "enonce": "19. Quel terme qualifie un système technique capable de fonctionner de manière autonome grâce à des programmes informatiques ? (Un mot)",
+      "correct": "automatisation"
+    },
+    {
+      "id": "exo-20",
+      "niveau": "Avancé",
+      "points": 3,
+      "type": "choix-unique",
+      "enonce": "20. Comment l'éthique intervient-elle face aux innovations scientifiques et techniques rapides ?",
+      "options": [
+        "Elle sert à évaluer les risques moraux, sociétaux et à encadrer les dérives potentielles de l'usage des technologies",
+        "Elle sert à fixer le prix de vente des smartphones",
+        "Elle impose le retour aux technologies du Moyen Âge",
+        "Elle n'a aucun rôle réglementaire ou consultatif"
+      ],
+      "correct": 0
     }
   ]
 }
