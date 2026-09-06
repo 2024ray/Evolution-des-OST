@@ -16,6 +16,7 @@ let userAtelierAnswers = {};
 document.addEventListener("DOMContentLoaded", () => {
     loadData();
     initNavigation();
+    initAntiCopyPaste(); // MODIFICATION : Initialisation de la protection contre le copier-coller
 });
 
 async function loadData() {
@@ -47,6 +48,23 @@ function normalizeText(text) {
         .trim();
 }
 
+// --- MODIFICATION : Fonction de désactivation du copier-coller et des raccourcis ---
+function initAntiCopyPaste() {
+    // Désactive les événements de copie, coupe et collage au niveau du document
+    ["copy", "cut", "paste"].forEach(eventType => {
+        document.addEventListener(eventType, (e) => {
+            e.preventDefault();
+        });
+    });
+
+    // Désactive les raccourcis clavier spécifiques (Ctrl+C, Ctrl+V, Ctrl+X, Ctrl+A, etc.)
+    document.addEventListener("keydown", (e) => {
+        if ((e.ctrlKey || e.metaKey) && ["c", "v", "x", "a"].includes(e.key.toLowerCase())) {
+            e.preventDefault();
+        }
+    });
+}
+
 function initNavigation() {
     document.getElementById("btn-start-quiz").addEventListener("click", () => {
         switchSection("section-quiz");
@@ -54,19 +72,16 @@ function initNavigation() {
         initQuiz();
     });
 
-    // MODIFICATION : Ajout de la vérification du seuil de 70% avant de passer à l'atelier pratique
     document.getElementById("btn-submit-quiz").addEventListener("click", () => {
-        // Calculer le score du quiz pour vérifier la condition de 70%
         let quizScore = evaluateQuizScore();
         let maxQuizScore = currentQuizQuestions.length; // 30 questions
         let threshold = maxQuizScore * 0.7; // 70% requis (21/30)
 
         if (quizScore < threshold) {
             alert(`Attention ! Vous avez obtenu ${quizScore} / ${maxQuizScore} (${Math.round((quizScore/maxQuizScore)*100)}%). Vous devez obtenir au moins 70% de bonnes réponses (soit ${Math.ceil(threshold)}/${maxQuizScore}) pour débloquer l'Atelier Pratique. Veuillez réviser et recommencer.`);
-            return; // Bloque le passage à la section suivante tant que le score est insuffisant
+            return;
         }
 
-        // Si le score est suffisant, on arrête le timer du quiz et on bascule vers l'atelier
         clearInterval(quizTimerInterval);
         switchSection("section-atelier");
         startAtelierTimer();
@@ -385,7 +400,6 @@ function restoreCurrentExoAnswers() {
     }
 }
 
-// --- FONCTION UTILITAIRE : ÉVALUATION DU SCORE DU QUIZ ---
 function evaluateQuizScore() {
     let quizScore = 0;
     currentQuizQuestions.forEach((q, qIndex) => {
