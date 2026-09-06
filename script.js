@@ -54,7 +54,19 @@ function initNavigation() {
         initQuiz();
     });
 
+    // MODIFICATION : Ajout de la vérification du seuil de 70% avant de passer à l'atelier pratique
     document.getElementById("btn-submit-quiz").addEventListener("click", () => {
+        // Calculer le score du quiz pour vérifier la condition de 70%
+        let quizScore = evaluateQuizScore();
+        let maxQuizScore = currentQuizQuestions.length; // 30 questions
+        let threshold = maxQuizScore * 0.7; // 70% requis (21/30)
+
+        if (quizScore < threshold) {
+            alert(`Attention ! Vous avez obtenu ${quizScore} / ${maxQuizScore} (${Math.round((quizScore/maxQuizScore)*100)}%). Vous devez obtenir au moins 70% de bonnes réponses (soit ${Math.ceil(threshold)}/${maxQuizScore}) pour débloquer l'Atelier Pratique. Veuillez réviser et recommencer.`);
+            return; // Bloque le passage à la section suivante tant que le score est insuffisant
+        }
+
+        // Si le score est suffisant, on arrête le timer du quiz et on bascule vers l'atelier
         clearInterval(quizTimerInterval);
         switchSection("section-atelier");
         startAtelierTimer();
@@ -116,7 +128,6 @@ function initCours() {
             <p>${item.texte}</p>
         `;
 
-        // Insertion sécurisée du lecteur vidéo HTML5
         if (item.video) {
             cardHtml += `
                 <div class="video-container">
@@ -374,10 +385,8 @@ function restoreCurrentExoAnswers() {
     }
 }
 
-// --- BILAN & CALCUL DES SCORES ---
-function calculateAndDisplayResults() {
-    saveCurrentExoAnswers();
-
+// --- FONCTION UTILITAIRE : ÉVALUATION DU SCORE DU QUIZ ---
+function evaluateQuizScore() {
     let quizScore = 0;
     currentQuizQuestions.forEach((q, qIndex) => {
         if (q.type === "choix-unique") {
@@ -415,6 +424,14 @@ function calculateAndDisplayResults() {
             if (allCorrect) quizScore++;
         }
     });
+    return quizScore;
+}
+
+// --- BILAN & CALCUL DES SCORES ---
+function calculateAndDisplayResults() {
+    saveCurrentExoAnswers();
+
+    let quizScore = evaluateQuizScore();
 
     let atelierScore = 0;
     appData.evaluation.forEach(exo => {
