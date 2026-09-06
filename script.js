@@ -8,7 +8,7 @@ let quizTimerInterval = null;
 let quizSecondsLeft = 25 * 60; // 25 minutes pour les questions diversifiées
 
 let atelierTimerInterval = null;
-let atelierSecondsLeft = 90; // 90 secondes par exercice
+let atelierSecondsLeft = 60; // MODIFICATION : Durée réduite à 60 secondes par question
 
 let userQuizAnswers = {};
 let userAtelierAnswers = {};
@@ -16,7 +16,7 @@ let userAtelierAnswers = {};
 document.addEventListener("DOMContentLoaded", () => {
     loadData();
     initNavigation();
-    initSecurityProtections(); // MODIFICATION : Initialisation des protections de sécurité (Anti copier-coller et clic droit)
+    initSecurityProtections(); 
 });
 
 async function loadData() {
@@ -30,14 +30,11 @@ async function loadData() {
     }
 }
 
-// --- MODIFICATION : Fonctions de sécurité pour bloquer le copier-coller, le clic droit et les raccourcis ---
 function initSecurityProtections() {
-    // 1. Désactivation du clic droit (menu contextuel)
     document.addEventListener("contextmenu", (e) => {
         e.preventDefault();
     });
 
-    // 2. Désactivation des raccourcis clavier Ctrl+C, Ctrl+V, Ctrl+X (et équivalents Mac avec Meta)
     document.addEventListener("keydown", (e) => {
         if ((e.ctrlKey || e.metaKey) && ['c', 'v', 'x'].includes(e.key.toLowerCase())) {
             e.preventDefault();
@@ -70,32 +67,23 @@ function initNavigation() {
         initQuiz();
     });
 
-    // MODIFICATION : Ajout de la vérification du seuil de 70% avant de passer à l'atelier pratique
     document.getElementById("btn-submit-quiz").addEventListener("click", () => {
-        // Calculer le score du quiz pour vérifier la condition de 70%
         let quizScore = evaluateQuizScore();
-        let maxQuizScore = currentQuizQuestions.length; // 30 questions
-        let threshold = maxQuizScore * 0.7; // 70% requis (21/30)
+        let maxQuizScore = currentQuizQuestions.length; 
+        let threshold = maxQuizScore * 0.7; 
 
         if (quizScore < threshold) {
             alert(`Attention ! Vous avez obtenu ${quizScore} / ${maxQuizScore} (${Math.round((quizScore/maxQuizScore)*100)}%). Vous devez obtenir au moins 70% de bonnes réponses (soit ${Math.ceil(threshold)}/${maxQuizScore}) pour débloquer l'Atelier Pratique. Veuillez réviser et recommencer.`);
-            return; // Bloque le passage à la section suivante tant que le score est insuffisant
+            return; 
         }
 
-        // Si le score est suffisant, on arrête le timer du quiz et on bascule vers l'atelier
         clearInterval(quizTimerInterval);
         switchSection("section-atelier");
         startAtelierTimer();
         initAtelier();
     });
 
-    document.getElementById("btn-next-exo").addEventListener("click", () => {
-        if (currentExoIndex < currentAtelierExercises.length - 1) {
-            currentExoIndex++;
-            renderAtelierExercise();
-        }
-    });
-
+    // MODIFICATION : Suppression de l'écouteur sur btn-next-exo (bouton supprimé du DOM)
     document.getElementById("btn-prev-exo").addEventListener("click", () => {
         if (currentExoIndex > 0) {
             currentExoIndex--;
@@ -113,16 +101,9 @@ function initNavigation() {
         location.reload();
     });
 
-    document.getElementById("btn-download-pdf").addEventListener("click", () => {
-        const element = document.getElementById("pdf-content");
-        const opt = {
-            margin:       10,
-            filename:     `Bilan_Evolution_OST_${new Date().toISOString().slice(0,10)}.pdf`,
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2, useCORS: true },
-            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        };
-        html2pdf().from(element).set(opt).save();
+    // MODIFICATION : Remplacement de l'action de téléchargement PDF par l'impression native window.print()
+    document.getElementById("btn-print-pdf").addEventListener("click", () => {
+        window.print();
     });
 }
 
@@ -233,7 +214,7 @@ function initQuiz() {
 
 // --- ATELIER PRATIQUE ---
 function startAtelierTimer() {
-    atelierSecondsLeft = 90;
+    atelierSecondsLeft = 60; // MODIFICATION : Initialisation à 60 secondes
     updateAtelierTimerDisplay();
 
     atelierTimerInterval = setInterval(() => {
@@ -242,12 +223,18 @@ function startAtelierTimer() {
 
         if (atelierSecondsLeft <= 10) {
             document.getElementById("atelier-timer").classList.add("warning");
+        } else {
+            document.getElementById("atelier-timer").classList.remove("warning");
         }
 
         if (atelierSecondsLeft <= 0) {
+            saveCurrentExoAnswers(); // Sauvegarder avant de forcer le passage
             if (currentExoIndex < currentAtelierExercises.length - 1) {
-                document.getElementById("btn-next-exo").click();
+                currentExoIndex++;
+                renderAtelierExercise();
+                startAtelierTimer(); // Relancer le timer pour la question suivante
             } else {
+                clearInterval(atelierTimerInterval);
                 document.getElementById("btn-submit-atelier").click();
             }
         }
@@ -267,9 +254,10 @@ function initAtelier() {
 }
 
 function renderAtelierExercise() {
-    saveCurrentExoAnswers();
-    atelierSecondsLeft = 90;
-    document.getElementById("atelier-timer").classList.remove("warning");
+    // Réinitialiser et relancer le timer de 60s à chaque affichage d'exercice
+    clearInterval(atelierTimerInterval);
+    atelierSecondsLeft = 60;
+    startAtelierTimer();
 
     const container = document.getElementById("atelier-container");
     container.innerHTML = "";
@@ -323,13 +311,12 @@ function renderAtelierExercise() {
 
     document.getElementById("btn-prev-exo").style.display = currentExoIndex > 0 ? "inline-block" : "none";
     if (currentExoIndex === currentAtelierExercises.length - 1) {
-        document.getElementById("btn-next-exo").style.display = "none";
         document.getElementById("btn-submit-atelier").style.display = "inline-block";
     } else {
-        document.getElementById("btn-next-exo").style.display = "inline-block";
         document.getElementById("btn-submit-atelier").style.display = "none";
     }
 
+    // MODIFICATION : Mise à jour dynamique de la barre de progression de l'atelier
     let progressPct = ((currentExoIndex + 1) / currentAtelierExercises.length) * 100;
     document.getElementById("atelier-progress-bar").style.width = `${progressPct}%`;
 }
@@ -401,7 +388,6 @@ function restoreCurrentExoAnswers() {
     }
 }
 
-// --- FONCTION UTILITAIRE : ÉVALUATION DU SCORE DU QUIZ ---
 function evaluateQuizScore() {
     let quizScore = 0;
     currentQuizQuestions.forEach((q, qIndex) => {
@@ -443,7 +429,6 @@ function evaluateQuizScore() {
     return quizScore;
 }
 
-// --- BILAN & CALCUL DES SCORES ---
 function calculateAndDisplayResults() {
     saveCurrentExoAnswers();
 
