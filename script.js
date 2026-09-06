@@ -1,4 +1,3 @@
-
 // Application State
 let appData = null;
 let currentQuizQuestions = [];
@@ -17,6 +16,7 @@ let userAtelierAnswers = {};
 document.addEventListener("DOMContentLoaded", () => {
     loadData();
     initNavigation();
+    initSecurityProtections(); // MODIFICATION : Initialisation des protections de sécurité (Anti copier-coller et clic droit)
 });
 
 async function loadData() {
@@ -28,6 +28,21 @@ async function loadData() {
         console.error("Erreur de chargement du JSON :", error);
         alert("Impossible de charger les données pédagogiques.");
     }
+}
+
+// --- MODIFICATION : Fonctions de sécurité pour bloquer le copier-coller, le clic droit et les raccourcis ---
+function initSecurityProtections() {
+    // 1. Désactivation du clic droit (menu contextuel)
+    document.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+    });
+
+    // 2. Désactivation des raccourcis clavier Ctrl+C, Ctrl+V, Ctrl+X (et équivalents Mac avec Meta)
+    document.addEventListener("keydown", (e) => {
+        if ((e.ctrlKey || e.metaKey) && ['c', 'v', 'x'].includes(e.key.toLowerCase())) {
+            e.preventDefault();
+        }
+    });
 }
 
 function shuffle(array) {
