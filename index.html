@@ -13,7 +13,7 @@
     <header class="app-header">
         <div class="header-content">
             <div class="header-titles">
-                <h1><i class="fa-solid fa-timeline"></i> L'Évolution des OST vous est offert pas votre meilleur PROF Mr Qui?   Mr Durand bien évidemment </h1>
+                <h1><i class="fa-solid fa-timeline"></i> L'Évolution des OST vous est offert par votre meilleur PROF Mr Qui ? Mr Durand bien évidemment</h1>
                 <p>Innovations de rupture, sciences, technologies et impacts sur la société</p>
             </div>
             <div class="header-badge">
@@ -24,7 +24,39 @@
 
     <main class="app-main">
 
-        <section id="section-cours" class="app-section active">
+        <section id="section-identification" class="app-section active">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-id-card"></i> Espace Élève - Connexion Obligée par Mr Durand</h2>
+                <p>Avant de terrasser ce module, veuillez décliner votre identité sous peine d'une heure de colle cosmique !</p>
+            </div>
+
+            <div class="quiz-container" style="max-width: 600px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                <form id="form-identification" style="display: flex; flex-direction: column; gap: 20px;">
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 8px;">
+                        <label for="input-nom" style="font-weight: 600;"><i class="fa-solid fa-user">></i> Nom de l'élève :</label>
+                        <input type="text" id="input-nom" required placeholder="Ex: Dupont" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem;">
+                    </div>
+
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 8px;">
+                        <label for="input-prenom" style="font-weight: 600;"><i class="fa-solid fa-user-tag"></i> Prénom de l'élève :</label>
+                        <input type="text" id="input-prenom" required placeholder="Ex: Jean" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem;">
+                    </div>
+
+                    <div class="form-group" style="display: flex; flex-direction: column; gap: 8px;">
+                        <label for="input-classe" style="font-weight: 600;"><i class="fa-solid fa-school"></i> Classe :</label>
+                        <input type="text" id="input-classe" required placeholder="Ex: 3ème A" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem;">
+                    </div>
+
+                    <div class="action-bar" style="margin-top: 10px;">
+                        <button type="submit" id="btn-valider-id" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                            C'est parti, impressionner Mr Durand <i class="fa-solid fa-rocket"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section id="section-cours" class="app-section">
             <div class="section-header">
                 <h2><i class="fa-solid fa-book-open"></i> Apports Théoriques & Frise Chronologique</h2>
                 <p>Découvrez les notions clés avant de tester vos connaissances.</p>
@@ -65,13 +97,12 @@
             </div>
         </section>
 
-       <section id="section-atelier" class="app-section">
+        <section id="section-atelier" class="app-section">
             <div class="quiz-top-bar">
                 <div class="progress-container">
                     <div id="atelier-progress-bar" class="progress-bar"></div>
                 </div>
                 <div class="timer-box warning" id="atelier-timer">
-                    <!-- MODIFICATION : Affichage du timer initialisé à 30 secondes -->
                     <i class="fa-solid fa-stopwatch"></i> <span id="atelier-time-left">00:30</span>
                 </div>
             </div>
@@ -85,7 +116,6 @@
                 </div>
 
             <div class="action-bar">
-                <!-- MODIFICATION : Suppression complète du bouton "Revenir" (#btn-prev-exo) -->
                 <button id="btn-submit-atelier" class="btn btn-success" style="display:none;">
                     Terminer l'Atelier <i class="fa-solid fa-flag-checkered"></i>
                 </button>
@@ -96,7 +126,14 @@
             <div id="pdf-content">
                 <div class="section-header">
                     <h2><i class="fa-solid fa-award"></i> Bilan & Restitution</h2>
-                    <p>Synthèse de vos résultats pour le module L'Évolution des OST. Merci Monsieur Durand, c'etait trop facile Non!!!</p>
+                    <p>Synthèse de vos résultats pour le module L'Évolution des OST. Merci Monsieur Durand, c'était trop facile Non !!!</p>
+                </div>
+
+                <div class="student-info-card" id="bilan-student-card" style="background: #f8f9fa; border-left: 5px solid #4f46e5; padding: 15px 20px; margin-bottom: 20px; border-radius: 4px;">
+                    <h3 style="margin-top: 0; color: #4f46e5;"><i class="fa-solid fa-user-graduate"></i> Fiche d'identité de l'élève</h3>
+                    <p style="margin: 5px 0;"><strong>Nom :</strong> <span id="display-nom">-</span></p>
+                    <p style="margin: 5px 0;"><strong>Prénom :</strong> <span id="display-prenom">-</span></p>
+                    <p style="margin: 5px 0;"><strong>Classe :</strong> <span id="display-classe">-</span></p>
                 </div>
 
                 <div class="score-card">
@@ -127,7 +164,6 @@
                 <button id="btn-print-pdf" class="btn btn-primary">
                     <i class="fa-solid fa-print"></i> Imprimer le document en PDF
                 </button>
-                <!-- MODIFICATION : Suppression complète du bouton "Recommencer" (#btn-restart) -->
             </div>
         </section>
 
@@ -138,5 +174,33 @@
     </footer>
 
     <script src="script.js"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const formIdentification = document.getElementById("form-identification");
+            
+            formIdentification.addEventListener("submit", (e) => {
+                e.preventDefault();
+                
+                const nom = document.getElementById("input-nom").value.trim();
+                const prenom = document.getElementById("input-prenom").value.trim();
+                const classe = document.getElementById("input-classe").value.trim();
+                
+                // Stockage temporaire dans le localStorage pour persistance durant le parcours
+                localStorage.setItem("eleve_nom", nom);
+                localStorage.setItem("eleve_prenom", prenom);
+                localStorage.setItem("eleve_classe", classe);
+                
+                // Injection des données dans la section Bilan
+                document.getElementById("display-nom").textContent = nom;
+                document.getElementById("display-prenom").textContent = prenom;
+                document.getElementById("display-classe").textContent = classe;
+                
+                // Basculement de l'affichage des sections (Masquer l'identification, afficher le cours)
+                document.getElementById("section-identification").classList.remove("active");
+                document.getElementById("section-cours").classList.add("active");
+            });
+        });
+    </script>
 </body>
 </html>
