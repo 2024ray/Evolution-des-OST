@@ -148,7 +148,7 @@ function startQuizTimer() {
             document.getElementById("btn-submit-quiz").click();
         }
     }, 1000);
-}
+
 
 function initQuiz() {
     currentQuizQuestions = shuffle(appData.quizComprehension);
