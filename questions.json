@@ -21,7 +21,7 @@
   ],
   "parametresInterface": {
     "boutonAction": "Imprimer le document en PDF",
-    "tempsParQuestionSecondes": 60,
+    "tempsParQuestionSecondes": 30,
     "modeNavigationAtelier": "automatique-bloque"
   },
   "quizComprehension": [
