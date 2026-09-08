@@ -205,7 +205,8 @@ function initQuiz() {
 
 // --- ATELIER PRATIQUE ---
 function startAtelierTimer() {
-    atelierSecondsLeft = 30; // MODIFICATION : Durée fixée à 30 secondes
+    clearInterval(atelierTimerInterval); // Sécurité : s'assure qu'aucun ancien minuteur ne tourne
+    atelierSecondsLeft = 30; 
     updateAtelierTimerDisplay();
 
     atelierTimerInterval = setInterval(() => {
@@ -222,14 +223,14 @@ function startAtelierTimer() {
             saveCurrentExoAnswers(); 
             if (currentExoIndex < currentAtelierExercises.length - 1) {
                 currentExoIndex++;
-                renderAtelierExercise();
-                startAtelierTimer(); 
+                renderAtelierExercise(); // renderAtelierExercise() réinitialise et relance déjà le timer proprement
             } else {
                 clearInterval(atelierTimerInterval);
                 document.getElementById("btn-submit-atelier").click();
             }
         }
     }, 1000);
+}
 }
 
 function updateAtelierTimerDisplay() {
