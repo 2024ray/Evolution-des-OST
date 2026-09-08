@@ -5,10 +5,10 @@ let currentAtelierExercises = [];
 let currentExoIndex = 0;
 
 let quizTimerInterval = null;
-let quizSecondsLeft = 25 * 60; // 25 minutes pour les questions diversifiées
+let quizSecondsLeft = 25 * 60; // 25 minutes pour le quiz
 
 let atelierTimerInterval = null;
-let atelierSecondsLeft = 30; // MODIFICATION : Durée réduite à 30 secondes par question
+let atelierSecondsLeft = 30; // 30 secondes par question d'atelier
 
 let userQuizAnswers = {};
 let userAtelierAnswers = {};
@@ -83,15 +83,11 @@ function initNavigation() {
         initAtelier();
     });
 
-    // MODIFICATION : Bouton "Revenir" (#btn-prev-exo) complètement supprimé de la logique et masqué.
-
     document.getElementById("btn-submit-atelier").addEventListener("click", () => {
         clearInterval(atelierTimerInterval);
         calculateAndDisplayResults();
         switchSection("section-bilan");
     });
-
-    // MODIFICATION : Bouton "Recommencer" (#btn-restart) supprimé du parcours de bilan.
 
     document.getElementById("btn-print-pdf").addEventListener("click", () => {
         window.print();
@@ -134,6 +130,7 @@ function initCours() {
 
 // --- QUIZ ---
 function startQuizTimer() {
+    clearInterval(quizTimerInterval);
     quizTimerInterval = setInterval(() => {
         quizSecondsLeft--;
         let m = Math.floor(quizSecondsLeft / 60);
@@ -148,7 +145,7 @@ function startQuizTimer() {
             document.getElementById("btn-submit-quiz").click();
         }
     }, 1000);
-
+}
 
 function initQuiz() {
     currentQuizQuestions = shuffle(appData.quizComprehension);
@@ -205,7 +202,7 @@ function initQuiz() {
 
 // --- ATELIER PRATIQUE ---
 function startAtelierTimer() {
-    clearInterval(atelierTimerInterval); // Sécurité : s'assure qu'aucun ancien minuteur ne tourne
+    clearInterval(atelierTimerInterval);
     atelierSecondsLeft = 30; 
     updateAtelierTimerDisplay();
 
@@ -223,14 +220,13 @@ function startAtelierTimer() {
             saveCurrentExoAnswers(); 
             if (currentExoIndex < currentAtelierExercises.length - 1) {
                 currentExoIndex++;
-                renderAtelierExercise(); // renderAtelierExercise() réinitialise et relance déjà le timer proprement
+                renderAtelierExercise();
             } else {
                 clearInterval(atelierTimerInterval);
                 document.getElementById("btn-submit-atelier").click();
             }
         }
     }, 1000);
-}
 }
 
 function updateAtelierTimerDisplay() {
@@ -247,7 +243,7 @@ function initAtelier() {
 
 function renderAtelierExercise() {
     clearInterval(atelierTimerInterval);
-    atelierSecondsLeft = 30; // MODIFICATION : Réinitialisation à 30 secondes
+    atelierSecondsLeft = 30; 
     startAtelierTimer();
 
     const container = document.getElementById("atelier-container");
