@@ -350,7 +350,7 @@
     {
       "id": "exo-1",
       "niveau": "Facile",
-      "points": 3,
+      "points": 1,
       "type": "choix-unique",
       "enonce": "1. Parmi ces propositions, identifiez l'innovation de rupture historique majeure :",
       "options": [
@@ -364,7 +364,7 @@
     {
       "id": "exo-2",
       "niveau": "Facile",
-      "points": 2,
+      "points": 1,
       "type": "valeur-numerique",
       "enonce": "2. Si une découverte scientifique majeure date de 1895 et que la première liaison radio transatlantique est réalisée en 1901, quel est le nombre d'années écoulées ? (Écrivez uniquement le chiffre)",
       "correct": "6"
@@ -372,7 +372,7 @@
     {
       "id": "exo-3",
       "niveau": "Moyen",
-      "points": 3,
+      "points": 2,
       "type": "tableau-menu",
       "enonce": "3. Associez chaque découverte scientifique à son développement technologique issu :",
       "colonnes": ["Découverte scientifique", "Développement technologique associé"],
@@ -392,7 +392,7 @@
     {
       "id": "exo-4",
       "niveau": "Facile",
-      "points": 2,
+      "points": 1,
       "type": "choix-multiple",
       "enonce": "4. Quels sont les impacts sociétaux directs de l'essor des réseaux sociaux ? (Sélectionnez les deux bonnes réponses)",
       "options": [
@@ -406,7 +406,7 @@
     {
       "id": "exo-5",
       "niveau": "Moyen",
-      "points": 3,
+      "points": 2,
       "type": "texte-trous-liste-unique",
       "enonce": "5. Complétez le texte sur les contraintes sociétales : <br> 'La prise de conscience environnementale pousse les concepteurs d'OST à intégrer l'______ dès la phase de conception, afin de faciliter le recyclage futur.'",
       "options": ["Éco-conception", "Obsolescence", "Complexité", "Lourdeur"],
@@ -423,7 +423,7 @@
     {
       "id": "exo-7",
       "niveau": "Moyen",
-      "points": 3,
+      "points": 2,
       "type": "association",
       "enonce": "7. Associez chaque OST à son incidence principale sur la société :",
       "paires": [
@@ -434,7 +434,7 @@
     {
       "id": "exo-8",
       "niveau": "Facile",
-      "points": 2,
+      "points": 1,
       "type": "choix-unique",
       "enonce": "8. Qu'est-ce qui caractérise en premier lieu le passage d'une invention scientifique à un objet technique commercialisé ?",
       "options": [
@@ -448,7 +448,7 @@
     {
       "id": "exo-9",
       "niveau": "Moyen",
-      "points": 3,
+      "points": 2,
       "type": "choix-multiple",
       "enonce": "9. Parmi ces exemples, lesquels traduisent une contrainte sociétale environnementale sur un OST ? (Deux réponses)",
       "options": [
@@ -484,7 +484,7 @@
     {
       "id": "exo-12",
       "niveau": "Facile",
-      "points": 2,
+      "points": 1,
       "type": "choix-unique",
       "enonce": "12. Le téléphone fixe de l'ère analogique a évolué vers le smartphone numérique. C'est un exemple de :",
       "options": [
@@ -506,7 +506,7 @@
     {
       "id": "exo-14",
       "niveau": "Moyen",
-      "points": 3,
+      "points": 2,
       "type": "choix-unique",
       "enonce": "14. En quoi les contraintes sociétales de sécurité routière ont-elles modifié l'évolution de l'automobile ?",
       "options": [
@@ -520,7 +520,7 @@
     {
       "id": "exo-15",
       "niveau": "Facile",
-      "points": 3,
+      "points": 1,
       "type": "choix-unique",
       "enonce": "15. Exprimez l'idée principale du module : quel est le moteur principal de l'évolution des OST au fil des siècles ?",
       "options": [
@@ -534,7 +534,7 @@
     {
       "id": "exo-16",
       "niveau": "Facile",
-      "points": 2,
+      "points": 1,
       "type": "choix-unique",
       "enonce": "16. Qu'est-ce qu'une invention technique par rapport à la science ?",
       "options": [
@@ -548,7 +548,7 @@
     {
       "id": "exo-17",
       "niveau": "Moyen",
-      "points": 3,
+      "points": 2,
       "type": "choix-multiple",
       "enonce": "17. Quels sont les impacts culturels majeurs de l'arrivée du web et du numérique ? (Deux réponses)",
       "options": [
@@ -562,7 +562,7 @@
     {
       "id": "exo-18",
       "niveau": "Facile",
-      "points": 2,
+      "points": 1,
       "type": "valeur-numerique",
       "enonce": "18. Si un objet technique est conçu en 1950 et qu'une mise à jour majeure intervient 25 ans plus tard, quelle est l'année de cette mise à jour ? (Écrivez uniquement le chiffre)",
       "correct": "1975"
@@ -570,7 +570,7 @@
     {
       "id": "exo-19",
       "niveau": "Moyen",
-      "points": 3,
+      "points": 2,
       "type": "reponse-saisie",
       "enonce": "19. Quel terme qualifie un système technique capable de fonctionner de manière autonome grâce à des programmes informatiques ? (Un mot)",
       "correct": "automatisation"
